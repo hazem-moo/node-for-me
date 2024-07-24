@@ -1,10 +1,20 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-let schema = Schema({
-  name: {
-    type: String,
-    unique: [true, "unique name..."],
-    minLength: [2, "name length it`s low"],
-    maxLength: [20, "name length it`s lanch"],
+let schema = new Schema(
+  {
+    name: {
+      type: String,
+      minLenght: [2, "the name is eny"],
+      maxLenght: [20, "name is too high"],
+    },
+    slug: {
+      type: String,
+      lowercase: true,
+    },
   },
-});
+  { timestamps: true }
+);
+
+let categoryModul = model("amazon", schema);
+
+module.exports = categoryModul;
